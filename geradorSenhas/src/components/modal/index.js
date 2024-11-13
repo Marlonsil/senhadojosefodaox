@@ -2,14 +2,15 @@ import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-nativ
 import * as Clipboard from 'expo-clipboard';
 import Toast from 'react-native-toast-message';
 
-export function ModalPassword({ senha, handleClose,salvarSenha }) {
+export function ModalPassword({ senha, handleClose, salvarSenha }) {
 
+    // Função para copiar a senha para a área de transferência
     function copyClipboard() {
         Clipboard.setStringAsync(senha);
         Toast.show({
             type: 'success',
             text1: 'Senha copiada',
-            text2: 'Senha copiada para a área de tranfêrencia!',
+            text2: 'Senha copiada para a área de transferência!',
         });
     }
 
@@ -18,7 +19,10 @@ export function ModalPassword({ senha, handleClose,salvarSenha }) {
             <View style={styles.content}>
                 <Text style={styles.title}>Senha gerada</Text>
 
-                <Pressable style={styles.innerPassword} onPress={copyClipboard}>
+                <Pressable 
+                    style={styles.innerPassword} 
+                    onPress={copyClipboard}
+                >
                     <Text style={styles.text}>
                         {senha}
                     </Text>
@@ -29,16 +33,19 @@ export function ModalPassword({ senha, handleClose,salvarSenha }) {
                         <Text style={styles.buttonText}>Voltar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={salvarSenha}>
+                    <TouchableOpacity 
+                        style={[styles.button, styles.buttonSave]} 
+                        onPress={salvarSenha}
+                    >
                         <Text style={styles.buttonSaveText}>Salvar senha</Text>
                     </TouchableOpacity>
+                    
+                    
                 </View>
-
             </View>
-
-            <Toast />
+            <Toast/>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -68,10 +75,13 @@ const styles = StyleSheet.create({
         width: "90%",
         padding: 14,
         borderRadius: 8,
+        marginBottom: 12,
+        justifyContent: 'center',
     },
     text: {
         color: "#000",
         textAlign: "center",
+        fontSize: 16,
     },
     buttonArea: {
         flexDirection: "row",
@@ -95,4 +105,8 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontWeight: 'bold',
     },
-})
+    buttonText: {
+        color: "#392DE9",
+        fontWeight: 'bold',
+    },
+});
